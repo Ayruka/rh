@@ -10,10 +10,12 @@
   --border-width: 4px;
 }
 
-/* Zera margens globais */
+/* Zera margens globais e evita scroll */
 html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
+    overflow: hidden; /* remove qualquer barra de rolagem */
 }
 
 /* CAIXA RGB */
@@ -119,10 +121,6 @@ html, body {
 <div class="caixa-rgb">
     <span class="texto-rgb">Eu posso me tornar um(a) DEV também?</span>
 </div>
-
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
 
 </body>
 </html>
