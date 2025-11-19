@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Barra RGB com Texto Colorido</title>
+
+<style>
+:root{
+  --border-radius: 15px;
+  --border-width: 4px;
+}
+
+/* zera tudo */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Barra */
+.barra-animada {
+    position: relative;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    background-color: #000; /* interno preto */
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+/* BORDA RGB */
+.barra-animada::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: var(--border-width);
+    background-image: conic-gradient(
+        #488cfb,
+        #29dbbc,
+        #ddf505,
+        #ff9f0e,
+        #e440bb,
+        #655adc,
+        #488cfb
+    );
+
+    --m-i: linear-gradient(#000 0 0);
+    --m-o: content-box, padding-box;
+    -webkit-mask-image: var(--m-i), var(--m-i);
+            mask-image: var(--m-i), var(--m-i);
+    -webkit-mask-origin: var(--m-o);
+            mask-origin: var(--m-o);
+    -webkit-mask-clip: var(--m-o);
+            mask-clip: content-box, padding-box;
+    -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+
+    pointer-events: none;
+    animation: rotate-hue 2s linear infinite;
+    filter: hue-rotate(0);
+}
+
+/* animação da borda */
+@keyframes rotate-hue {
+    to { filter: hue-rotate(1turn); }
+}
+
+/* Texto RGB */
+.barra-animada .texto-rgb {
+    display: inline-block;
+    font-family: verdana, geneva, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    color: transparent;
+
+    background-image: conic-gradient(
+        #488cfb,
+        #29dbbc,
+        #ddf505,
+        #ff9f0e,
+        #e440bb,
+        #655adc,
+        #488cfb
+    );
+
+    -webkit-background-clip: text;
+            background-clip: text;
+
+    filter: hue-rotate(0);
+    animation: hueText 2s linear infinite;
+    background-size: 200% 200%;
+    background-position: center;
+}
+
+/* animação do texto */
+@keyframes hueText {
+    to { filter: hue-rotate(1turn); }
+}
+</style>
+
+</head>
+<body>
+
+<div class="barra-animada">
+  <span class="texto-rgb">Curiosidades Sobre o Mundo DEV</span>
+</div>
+
+</body>
+</html>
