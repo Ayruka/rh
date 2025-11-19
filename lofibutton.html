@@ -8,15 +8,15 @@
     margin: 0;
     padding: 0;
     background: transparent;
-    overflow: hidden; /* sem barra de rolagem */
+    overflow: hidden;
+    height: 60px; /* suficiente já que vamos deslocar o botão */
   }
 
   body {
-    display: flex;
-    justify-content: flex-start;  /* NÃO centraliza horizontal */
-    align-items: flex-start;      /* NÃO centraliza vertical */
-    height: auto;                 /* altura apenas do conteúdo */
-    padding: 10px;                /* dá um espaço pra não colar na borda */
+    display: block;
+    padding-left: 15px;  /* move pra direita */
+    padding-top: 45px;   /* move pra baixo */
+    padding-bottom: 25px;;
   }
 
   .button {
@@ -44,7 +44,7 @@
     inset: 0;
     left: -4px;
     top: -1px;
-    margin: auto; /* mantém o alinhamento PERFECT */
+    margin: auto;
     width: 128px;
     height: 48px;
     border-radius: 10px;
