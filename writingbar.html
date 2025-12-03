@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema de hoje</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  #cursor {
+    display: inline-block;
+    width: 8px;
+    background-color: #FFFFFF;
+    margin-left: 2px;
+    animation: blink .7s infinite;
+  }
+
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+</style>
+</head>
+
+<body>
+<div style="margin: 0px; padding: 5px; width: auto; height: auto; border-radius: 5px; text-align: center; background-color: #0055AA;">
+  <span style="font-family:verdana,geneva,sans-serif"><strong><span style="color:#FFFFFF"><span style="font-size:14px">
+    <span id="typing"></span><span id="cursor"></span>
+  </span></span></strong></span>
+</div> <p>
+
+<script>
+  const text = "Pintores Anônimos do Habblet World";
+  const speed = 120; // Velocidade digitação (ms)
+  const pauseEnd = 1500; // Tempo antes de reiniciar (ms)
+
+  let i = 0;
+  const typingElement = document.getElementById("typing");
+
+  function type() {
+    if (i < text.length) {
+      typingElement.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    } else {
+      setTimeout(() => {
+        typingElement.textContent = "";
+        i = 0;
+        type();
+      }, pauseEnd);
+    }
+  }
+
+  type();
+</script>
+
+</body>
+</html>

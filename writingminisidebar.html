@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Passo Animado</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  #cursor {
+    display: inline-block;
+    width: 6px;
+    background-color: #FFFFFF;
+    margin-left: 2px;
+    animation: blink .7s infinite;
+  }
+
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+</style>
+</head>
+
+<body>
+
+<div style="background-color: #0055AA; border-bottom-right-radius: 18px 18px; border-top-right-radius: 18px 18px; box-shadow: 0 2px rgba(0,0,0,.25), inset 0 -2px rgba(0,0,0,.2), inset 0 -20px rgba(0,0,0,.05); color: #ffffff; float: left; font-family: 14px; height: 40px; line-height: 40px; margin-left: 0px; padding-left: 12px; padding-right: 11px; position: relative; text-shadow: 0 1px 1px rgba(0,0,0,.4); vertical-align: baseline;">
+<strong><span style="font-family: verdana, geneva, sans-serif; font-size: 10pt;">
+<span style="color: #ffffff;"><span id="typing"></span><span id="cursor"></span></span>
+
+
+
+<script>
+  const text = "Quais os diferentes tipos?";
+  const speed = 120; // velocidade da digitação
+  const pauseEnd = 1500; // pausa antes de reiniciar
+
+  let i = 0;
+  const typingElement = document.getElementById("typing");
+
+  function type() {
+    if (i < text.length) {
+      typingElement.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    } else {
+      setTimeout(() => {
+        typingElement.textContent = "";
+        i = 0;
+        type();
+      }, pauseEnd);
+    }
+  }
+
+  type();
+</script>
+
+</body>
+</html>
