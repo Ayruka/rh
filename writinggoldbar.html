@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema de hoje</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: transparent; /* SEM FUNDO */
+  }
+
+  /* Barra dourada brilhante */
+  .gold-bar {
+    margin: 0;
+    padding: 5px;
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(90deg,
+      #fff39a 0%,
+      #ffeb3b 25%,
+      #ffc107 50%,
+      #ffeb3b 75%,
+      #fff39a 100%);
+    background-size: 200% 100%;
+    animation: shine 3s linear infinite;
+    box-shadow:
+      0 0 8px rgba(255, 235, 59, 0.4),
+      0 0 20px rgba(255, 193, 7, 0.25),
+      0 0 28px rgba(255, 223, 0, 0.15);
+  }
+
+  /* Glow difuso atrás da barra */
+  .gold-bar::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    height: 75%;
+    border-radius: 10px;
+    filter: blur(22px);
+    opacity: 0.7;
+    background: radial-gradient(
+      closest-side,
+      rgba(255,240,120,0.45),
+      rgba(255,200,0,0.1) 60%,
+      transparent 70%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @keyframes shine {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Cursor piscando */
+  #cursor {
+    display: inline-block;
+    width: 8px;
+    background-color: #FFFFFF;
+    margin-left: 2px;
+    animation: blink .7s infinite;
+  }
+
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="gold-bar">
+  <span style="font-family:verdana,geneva,sans-serif; color:#b30000; font-size:14px; position:relative; z-index:2;">
+    <strong>
+      <span id="typing"></span><span id="cursor"></span>
+    </strong>
+  </span>
+</div>
+
+<script>
+  const text = "A Nostalgia Está no Ar!";
+  const speed = 120;
+  const pauseEnd = 1500;
+
+  let i = 0;
+  const typingElement = document.getElementById("typing");
+
+  function type() {
+    if (i < text.length) {
+      typingElement.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    } else {
+      setTimeout(() => {
+        typingElement.textContent = "";
+        i = 0;
+        type();
+      }, pauseEnd);
+    }
+  }
+
+  type();
+</script>
+
+</body>
+</html>
