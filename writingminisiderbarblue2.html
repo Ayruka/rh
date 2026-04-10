@@ -7,7 +7,7 @@
 <style>
   body {
     margin: 0;
-    padding: 20px;
+    padding: 0;
     background: transparent;
   }
 
@@ -56,7 +56,6 @@
     100% { opacity: 1; }
   }
 
-  /* medidor invisível */
   .measure {
     position: absolute;
     visibility: hidden;
@@ -93,7 +92,6 @@
       typing.textContent += text.charAt(i);
       measure.textContent = typing.textContent;
 
-      // largura baseada no texto atual
       const width = measure.offsetWidth + 40;
       bar.style.width = width + "px";
 
