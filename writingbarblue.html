@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema de hoje</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Barra */
+  .blue-bar {
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #0b3d91;
+
+    /* brilho mínimo */
+    box-shadow:
+      0 0 6px rgba(11, 61, 145, 0.4),
+      inset 0 0 4px rgba(255,255,255,0.1);
+
+    width: 120px;
+    transition: width 2s ease; /* crescimento mais suave */
+
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Texto */
+  .text {
+    font-family: verdana, geneva, sans-serif;
+    color: #ffffff;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  /* Cursor */
+  #cursor {
+    display: inline-block;
+    width: 8px;
+    background-color: #FFFFFF;
+    margin-left: 2px;
+    animation: blink .7s infinite;
+  }
+
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="blue-bar" id="bar">
+  <span class="text">
+    <strong>
+      <span id="typing"></span><span id="cursor"></span>
+    </strong>
+  </span>
+</div>
+
+<script>
+  const text = "Versões ao Longo do Tempo";
+  const speed = 120;
+  const pauseEnd = 1500;
+
+  const typingElement = document.getElementById("typing");
+  const bar = document.getElementById("bar");
+
+  let i = 0;
+
+  // Loop de crescimento da barra
+  function animateBar() {
+    const maxWidth = window.innerWidth * 0.9;
+
+    // cresce
+    bar.style.width = maxWidth + "px";
+
+    // depois de crescer, espera e reseta
+    setTimeout(() => {
+      bar.style.width = "120px";
+
+      // delay antes de crescer novamente
+      setTimeout(() => {
+        animateBar();
+      }, 800); // tempo parado pequena
+    }, 2500); // tempo que fica expandida
+  }
+
+  // Digitação independente
+  function type() {
+    if (i < text.length) {
+      typingElement.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    } else {
+      setTimeout(() => {
+        typingElement.textContent = "";
+        i = 0;
+        type();
+      }, pauseEnd);
+    }
+  }
+
+  // iniciar ambos
+  animateBar();
+  type();
+</script>
+
+</body>
+</html>
