@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  .bar {
+    background-color: #0b3d91;
+    border-bottom-right-radius: 18px;
+    border-top-right-radius: 18px;
+
+    box-shadow:
+      0 2px rgba(0,0,0,.25),
+      inset 0 -2px rgba(0,0,0,.2),
+      inset 0 -20px rgba(0,0,0,.05);
+
+    color: #ffffff;
+    height: 40px;
+    line-height: 40px;
+
+    padding-left: 12px;
+    padding-right: 11px;
+
+    white-space: nowrap;
+    overflow: hidden;
+
+    width: 120px;
+    transition: width 0.15s linear;
+
+    display: inline-block;
+  }
+
+  .text {
+    font-family: verdana;
+    font-size: 10pt;
+  }
+
+  #cursor {
+    display: inline-block;
+    width: 8px;
+    background-color: #FFFFFF;
+    margin-left: 2px;
+    animation: blink .7s infinite;
+  }
+
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  .measure {
+    position: absolute;
+    visibility: hidden;
+    white-space: nowrap;
+    font-family: verdana;
+    font-size: 10pt;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="bar" id="bar">
+  <strong>
+    <span class="text" id="typing"></span><span id="cursor"></span>
+  </strong>
+</div>
+
+<span class="measure" id="measure"></span>
+
+<script>
+  const text = "Domínios Utilizados";
+  const speed = 120;
+  const pauseEnd = 1500;
+
+  const typing = document.getElementById("typing");
+  const measure = document.getElementById("measure");
+  const bar = document.getElementById("bar");
+
+  let i = 0;
+
+  function type() {
+    if (i < text.length) {
+      typing.textContent += text.charAt(i);
+      measure.textContent = typing.textContent;
+
+      const width = measure.offsetWidth + 40;
+      bar.style.width = width + "px";
+
+      i++;
+      setTimeout(type, speed);
+    } else {
+      setTimeout(() => {
+        typing.textContent = "";
+        measure.textContent = "";
+        i = 0;
+
+        bar.style.width = "120px";
+
+        type();
+      }, pauseEnd);
+    }
+  }
+
+  type();
+</script>
+
+</body>
+</html>
